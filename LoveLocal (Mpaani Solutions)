@@ -1,0 +1,64 @@
+1. Easy 1
+#include <stdio.h>
+#include <string.h>
+int lngOfLWord(char *s) 
+{
+    int length = 0;
+    int i = strlen(s) - 1;
+    while (i >= 0 && s[i] == ' ') 
+    {
+        i--;
+    }
+    while (i >= 0 && s[i] != ' ') 
+    {
+        length++;
+        i--;
+    }
+    return length;
+}
+int main() {
+    char s1[] = "Hello World";
+    printf("Output 1: %d\n", lngOfLWord(s1));
+    return 0;
+}
+===========================================
+2. Medium 2
+def elements(nums):
+    count1, count2, candidate1, candidate2 = 0, 0, None, None
+    for num in nums:
+        if num == candidate1:
+            count1 += 1
+        elif num == candidate2:
+            count2 += 1
+        elif count1 == 0:
+            candidate1, count1 = num, 1
+        elif count2 == 0:
+            candidate2, count2 = num, 1
+        else:
+            count1 -= 1
+            count2 -= 1
+    count1, count2 = 0, 0
+    for num in nums:
+        if num == candidate1:
+            count1 += 1
+        elif num == candidate2:
+            count2 += 1
+    result = []
+    n = len(nums)
+    if count1 > n // 3:
+        result.append(candidate1)
+    if count2 > n // 3:
+        result.append(candidate2)
+    return result
+
+nums1 = [3, 2, 3]
+print(elements(nums1))  
+===============================
+3. Hard 2
+def palindrome(s):
+    i, j = 0, len(s) - 1
+    while j >= 0 and s[i] != s[j]:
+        j -= 1
+    return s[j + 1:][::-1] + s
+s1 = "aacecaaa"
+print(palindrome(s1))  
